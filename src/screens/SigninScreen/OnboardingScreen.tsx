@@ -20,7 +20,7 @@ const OnboardingScreen = ({ navigation }) => {
 
     useEffect(() => {
         GoogleSignin.configure({
-            webClientId: '907151540016-ueou9nt2683h6j81pcgo7tl4n6j768l6.apps.googleusercontent.com',
+            webClientId: 'xxxx',
             offlineAccess: true,
             scopes: ['email'],
         });
@@ -90,62 +90,7 @@ const OnboardingScreen = ({ navigation }) => {
         }
     }
 
-    const Facebook_login = () => {
-        LoginManager.logInWithPermissions(["public_profile", "email"]).then(
-            function (result) {
-                if (result.isCancelled) {
-                    console.log("Login Cancelled " + JSON.stringify(result))
-                } else {
-                    console.log("Login success with  permisssions: " + result.grantedPermissions.toString());
-                    console.log("Login Success ", result);
-                    AccessToken.getCurrentAccessToken().then(
-                        (data) => {
-                            let accessToken = data.accessToken
-                            console.log(accessToken.toString())
-
-                            const responseInfoCallback = async (error, result) => {
-                                if (error) {
-                                    console.log(error)
-                                    console.log('Error fetching data: ', error);
-                                } else {
-                                    console.log(result)
-                                    console.log('Success fetching data: ', result);
-                                    const data = await facebook_signin(result.email, result.first_name, result.picture.data.url)
-                                    if (data) {
-                                        dispatch(saveUserToken(data.token))
-                                        dispatch(saveAuthProfile(data.user))
-                                    }
-                                    else {
-                                        Alert.alert('Somthing went wrong')
-                                    }
-                                }
-                            }
-
-                            const infoRequest = new GraphRequest(
-                                '/me',
-                                {
-                                    accessToken: accessToken,
-                                    parameters: {
-                                        fields: {
-                                            string: 'email,first_name,picture'
-                                        }
-                                    }
-                                },
-                                responseInfoCallback
-
-                            );
-
-                            new GraphRequestManager().addRequest(infoRequest).start()
-
-                        }
-                    )
-                }
-            },
-            function (error) {
-                console.log("Login failed with error: " + error);
-            }
-        )
-    }
+    
 
 
 
@@ -236,7 +181,7 @@ const OnboardingScreen = ({ navigation }) => {
                         lable={'Join with Facebook'}
                         stylecontainer={styles.buttonstyle}
                         lablestyle={styles.labelstyle}
-                        onPress={Facebook_login}
+                        // onPress={Facebook_login}
                     />
 
                 </View>
