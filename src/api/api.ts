@@ -1,6 +1,6 @@
 import axios from "axios";
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { GoogleSignin } from '@react-native-google-signin/google-signin';
+// import { GoogleSignin } from '@react-native-google-signin/google-signin';
 
 
 
@@ -154,8 +154,8 @@ export const logOut = async () => {
   let tokenStr = axios.defaults.headers.common['Authorization']
   try {
     let response = await axios.post('/logout', { headers: { "Authorization": `Bearer ${tokenStr}` }})
-    GoogleSignin.revokeAccess()
-    GoogleSignin.signOut()
+    // GoogleSignin.revokeAccess()
+    // GoogleSignin.signOut()
     AsyncStorage.removeItem('LoginData');
     axios.defaults.headers.common['Authorization'] = null
     console.log('Logout' , response)
