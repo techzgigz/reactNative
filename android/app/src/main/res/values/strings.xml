@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Storybook</string>
+    <string name="facebook_app_id">894493027932579</string>
+    <string name="facebook_client_token">41b7d5d97a93e3a3cf5cd85aea655209</string>
+</resources>
