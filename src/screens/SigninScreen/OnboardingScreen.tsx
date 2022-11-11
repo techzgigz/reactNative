@@ -5,7 +5,7 @@ import fb from '../../assets/icons/fb.png';
 import Google from '../../assets/icons/Google.png';
 import Linkedin from '../../assets/icons/Linkedin.png';
 import Button from '../../components/Button';
-import { GoogleSignin, statusCodes } from '@react-native-google-signin/google-signin';
+// import { GoogleSignin, statusCodes } from '@react-native-google-signin/google-signin';
 import { AccessToken, GraphRequest, LoginButton, GraphRequestManager, LoginManager } from 'react-native-fbsdk-next';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { google_signin, facebook_signin, linkedin_signin } from '../../api/api';
@@ -19,76 +19,76 @@ const OnboardingScreen = ({ navigation }) => {
     const dispatch = useDispatch()
 
     useEffect(() => {
-        GoogleSignin.configure({
-            webClientId: 'xxxx',
-            offlineAccess: true,
-            scopes: ['email'],
-        });
-        isSignedIn()
+        // GoogleSignin.configure({
+        //     webClientId: 'xxxx',
+        //     offlineAccess: true,
+        //     scopes: ['email'],
+        // });
+        // isSignedIn()
     })
 
-    const googleSignIn = async () => {
-        try {
-            await GoogleSignin.hasPlayServices();
-            const userInfo = await GoogleSignin.signIn()
+    // const googleSignIn = async () => {
+    //     try {
+    //         await GoogleSignin.hasPlayServices();
+    //         const userInfo = await GoogleSignin.signIn()
 
-            const data = await google_signin(userInfo.idToken)
-            console.log(data);
+    //         const data = await google_signin(userInfo.idToken)
+    //         console.log(data);
             
-            if (data) {
-                dispatch(saveUserToken(data.token))
-                dispatch(saveAuthProfile(data.user))
-            }
-            else {
-                Alert.alert('Somthing went wrong')
-            }
+    //         if (data) {
+    //             dispatch(saveUserToken(data.token))
+    //             dispatch(saveAuthProfile(data.user))
+    //         }
+    //         else {
+    //             Alert.alert('Somthing went wrong')
+    //         }
 
-        } catch (error) {
-            console.log('message', error);
-            if (error.code === statusCodes.SIGN_IN_CANCELLED) {
-                console.log('User Cancelled the login flow');
-            } else if (error.code === statusCodes.IN_PROGRESS) {
-                console.log('Signing in');
-            } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
-                console.log('Play services Not available');
-            } else {
-                console.log('Some other error happened');
-            }
-        }
-    }
+    //     } catch (error) {
+    //         console.log('message', error);
+    //         if (error.code === statusCodes.SIGN_IN_CANCELLED) {
+    //             console.log('User Cancelled the login flow');
+    //         } else if (error.code === statusCodes.IN_PROGRESS) {
+    //             console.log('Signing in');
+    //         } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
+    //             console.log('Play services Not available');
+    //         } else {
+    //             console.log('Some other error happened');
+    //         }
+    //     }
+    // }
 
-    const isSignedIn = async () => {
-        const isSignedIn = await GoogleSignin.isSignedIn();
-        if (!!isSignedIn) {
-            getCurrentUserInfo()
-        } else {
-            console.log('please Login')
-        }
-    }
+    // const isSignedIn = async () => {
+    //     const isSignedIn = await GoogleSignin.isSignedIn();
+    //     if (!!isSignedIn) {
+    //         getCurrentUserInfo()
+    //     } else {
+    //         console.log('please Login')
+    //     }
+    // }
 
-    const getCurrentUserInfo = async () => {
-        try {
-            const userInfo = await GoogleSignin.signInSilently()
-            setUser(userInfo)
-        } catch (error) {
-            if (error.code === statusCodes.SIGN_IN_REQUIRED) {
-                // Alert.alert('User has not signed in yet')
-                console.log('User has not signed in yet');
-            } else {
-                // Alert.alert('Something went wrong.')
-                console.log('something went wrong');
-            }
-        }
-    }
+    // const getCurrentUserInfo = async () => {
+    //     try {
+    //         const userInfo = await GoogleSignin.signInSilently()
+    //         setUser(userInfo)
+    //     } catch (error) {
+    //         if (error.code === statusCodes.SIGN_IN_REQUIRED) {
+    //             // Alert.alert('User has not signed in yet')
+    //             console.log('User has not signed in yet');
+    //         } else {
+    //             // Alert.alert('Something went wrong.')
+    //             console.log('something went wrong');
+    //         }
+    //     }
+    // }
 
-    const signOut = async () => {
-        try {
-            await GoogleSignin.revokeAccess()
-            await GoogleSignin.signOut()
-        } catch (error) {
-            console.log(error)
-        }
-    }
+    // const signOut = async () => {
+    //     try {
+    //         await GoogleSignin.revokeAccess()
+    //         await GoogleSignin.signOut()
+    //     } catch (error) {
+    //         console.log(error)
+    //     }
+    // }
 
     
 
@@ -109,7 +109,7 @@ const OnboardingScreen = ({ navigation }) => {
                         lable={'Join with Google'}
                         stylecontainer={styles.buttonstyle}
                         lablestyle={styles.labelstyle}
-                        onPress={googleSignIn}
+                        // onPress={googleSignIn}
                     />
                     
                     {/* <LoginButton
