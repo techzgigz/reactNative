@@ -111,24 +111,7 @@ const OnboardingScreen = ({ navigation }) => {
                         lablestyle={styles.labelstyle}
                         onPress={googleSignIn}
                     />
-                    {/* <LinkedInModal
-                        ref={linkedRef}
-                        clientID='77gqslleqfcip1'
-                        clientSecret='SYSwna16DU9m4a5A'
-                        redirectUri='http://localhost:5000/linkedin'
-                        onSuccess={code => { linkedin_signin(code.access_token) }}
-                        renderButton={() => {
-                            return (
-                                <Button
-                                    onPress={() => linkedRef.current.open()}
-                                    imguri={Linkedin}
-                                    lable={'Join with Linkedin'}
-                                    stylecontainer={styles.buttonstyle}
-                                    lablestyle={styles.labelstyle}
-                                />
-                            )
-                        }}
-                    /> */}
+                    
                     {/* <LoginButton
                         onLoginFinished={
                             (error, result) => {
